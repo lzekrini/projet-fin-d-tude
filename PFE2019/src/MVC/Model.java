@@ -1,33 +1,52 @@
 package MVC;
 import jbotsim.*;
+import jbotsim.Color;
 
-import java.awt.geom.Point2D;
+import java.awt.*;
 import java.util.*;
 
 
 public class Model {
-    int i = 0;
-    int tab[] = new int[2];
-    View v;
-
+    int x = 0;
+    int index[] = {0,0};
 
 /////////////////////////////Methode pour ajout des liens///////////////:
 
-    public void addlink(Topology tp, Node node) {
-
-        for(i=0;i<2;i++) {
-            tab[i] = node.getID();
+    public void counter(Topology tp,Node node) {
+        index[x] = node.getID();
+        x++;
+        if (x > 1) {
+           addlink(tp);
         }
+    }
+    public void addlink(Topology tp) {
 
-        if (i == 1) {
-            Link l = new Link(tp.getNodes().get(tab[0]), tp.getNodes().get(tab[1]));
-            l.setWidth(4);
-            tp.addLink(l);
+        Link l = new Link(tp.getNodes().get(index[0]), tp.getNodes().get(index[1]));
+        l.setWidth(2);
+        l.setColor(Color.GREEN);
+        tp.addLink(l);
+        x = 0;
+
+    }
+
+
+    /////////////////////////////Methode pour supprimer des liens///////////////:
+
+
+    public void countdown(Topology tp,Node node) {
+        index[x] = node.getID();
+        x++;
+        if (x > 1) {
+            rmlink(tp);
 
         }
     }
-    ///////////////////////////////////Methode pour supprimer les liens ///////////////////
+    public void rmlink(Topology tp) {
 
 
+        Link l = new Link(tp.getNodes().get(index[0]), tp.getNodes().get(index[1]));
+        tp.removeLink(l);
+        x = 0;
+    }
 
 }
