@@ -195,6 +195,9 @@ public class View {
     public JButton getB3() {
         return b3;
     }
+    public JRadioButton getRIPV4() {return ipv4; }
+    public JRadioButton getR1pv6() {return ipv6; }
+
 
 
 
