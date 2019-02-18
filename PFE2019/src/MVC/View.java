@@ -55,8 +55,8 @@ public class View {
         G1.insets = new Insets(5, 5, 5, 5);
 
 
-        imgipv4 = new ImageIcon(new ImageIcon("./src/img/ipv6.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
-        imgipv6 = new ImageIcon(new ImageIcon("./src/img/ip4.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
+        imgipv4 = new ImageIcon(new ImageIcon("./src/img/ip4.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
+        imgipv6 = new ImageIcon(new ImageIcon("./src/img/ipv6.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
         imgaddlink = new ImageIcon(new ImageIcon("./src/img/link_add.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
         imgclear = new ImageIcon(new ImageIcon("./src/img/reset.jpeg").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
         imgrun = new ImageIcon(new ImageIcon("./src/img/run.jpeg").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
@@ -160,6 +160,12 @@ public class View {
         jtp = new JTopology(tp);
         jtp.setSize(600,459);
 
+        tp.setLinkResolver(new LinkResolver() {
+            public boolean isHeardBy(Node n1, Node n2) {
+                return false;
+            }
+        });
+
         JPanel  Topo = new JPanel();
         Topo.setBackground(Color.LIGHT_GRAY);
 
@@ -172,6 +178,8 @@ public class View {
 
 
         paneltp.add(jtp);
+        Topo.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
+        paneltp.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
         Topo.add(paneltp);
 
 
@@ -183,23 +191,6 @@ public class View {
 
 
     }
-
-    public JButton getB1() {
-        return b1;
-    }
-
-    public JButton getB2() {
-        return b2;
-    }
-
-    public JButton getB3() {
-        return b3;
-    }
-    public JRadioButton getRIPV4() {return ipv4; }
-    public JRadioButton getR1pv6() {return ipv6; }
-
-
-
 
     public void Style(JButton button) {
 
