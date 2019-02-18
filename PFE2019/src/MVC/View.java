@@ -55,11 +55,11 @@ public class View {
         G1.insets = new Insets(5, 5, 5, 5);
 
 
-        imgipv4 = new ImageIcon(new ImageIcon("/home/dida/Desktop/img/ipv6.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
-        imgipv6 = new ImageIcon(new ImageIcon("/home/dida/Desktop/img/ip4.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
-        imgaddlink = new ImageIcon(new ImageIcon("/home/dida/Desktop/img/link_add.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
-        imgclear = new ImageIcon(new ImageIcon("/home/dida/Desktop/img/reset.jpeg").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
-        imgrun = new ImageIcon(new ImageIcon("/home/dida/Desktop/img/run.jpeg").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
+        imgipv4 = new ImageIcon(new ImageIcon("./src/img/ipv6.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
+        imgipv6 = new ImageIcon(new ImageIcon("./src/img/ip4.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
+        imgaddlink = new ImageIcon(new ImageIcon("./src/img/link_add.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
+        imgclear = new ImageIcon(new ImageIcon("./src/img/reset.jpeg").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
+        imgrun = new ImageIcon(new ImageIcon("./src/img/run.jpeg").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
 
         JPanel menuaide=new JPanel();
         menuaide.setLayout(new FlowLayout());
@@ -195,6 +195,7 @@ public class View {
     public JButton getB3() {
         return b3;
     }
+    public JRadioButton getR1()
 
 
     public void stylebutton(JButton button) {

@@ -17,6 +17,7 @@ public class Controller implements  ActionListener,SelectionListener,CommandList
         view.getB1().addActionListener(this);
         view.getB2().addActionListener(this);
         view.getB3().addActionListener(this);
+        view.getR
 
 
     }
