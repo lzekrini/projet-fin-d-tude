@@ -63,9 +63,9 @@ public class View {
 
         JPanel menuaide=new JPanel();
         menuaide.setLayout(new FlowLayout());
-        stylebutton(b1);
-        stylebutton(b2);
-        stylebutton(b3);
+        Style(b1);
+        Style(b2);
+        Style(b3);
         menuaide.add(b1);
         menuaide.add(b2);
         menuaide.add(b3);
@@ -126,7 +126,7 @@ public class View {
         P2.setBackground(Color.LIGHT_GRAY);
         P2.add(addlink);
         Baddlink = new JButton(imgaddlink);
-        stylebutton(Baddlink);
+        Style(Baddlink);
         Baddlink.setPreferredSize(new Dimension(70,70));
         P2.add(Baddlink);
         Nmenu.add(P2);
@@ -137,7 +137,7 @@ public class View {
         P3.setBackground(Color.LIGHT_GRAY);
         P3.add(clear);
         Bclear =  new JButton(imgclear);
-        stylebutton(Bclear);
+        Style(Bclear);
         Bclear.setPreferredSize(new Dimension(70,70));
         P3.add(Bclear);
         Nmenu.add(P3);
@@ -147,7 +147,7 @@ public class View {
         P4.setBackground(Color.LIGHT_GRAY);
         P4.add(Run);
         Brun =  new JButton(imgrun);
-        stylebutton(Brun);
+        Style(Brun);
         Brun.setPreferredSize(new Dimension(70,70));
         P4.add(Brun);
         Nmenu.add(P4);
@@ -201,7 +201,7 @@ public class View {
 
 
 
-    public void stylebutton(JButton button) {
+    public void Style(JButton button) {
 
         button.setOpaque(false);
         button.setContentAreaFilled(false);
