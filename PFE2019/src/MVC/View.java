@@ -195,7 +195,7 @@ public class View {
     public JButton getB3() {
         return b3;
     }
-    public JRadioButton getR1()
+
 
 
     public void stylebutton(JButton button) {
