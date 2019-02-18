@@ -3,19 +3,19 @@ package MVC;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.Color;
+import java.awt.event.ActionListener;
 
 import jbotsim.*;
 import jbotsimx.ui.*;
-
-/**
- * Created by oakodad on 15/02/19.
- */
 public class View {
 
     private JFrame frame;
-
+    public JButton b1 =new JButton("File");
+    public JButton b2 =new JButton("Help");
+    public JButton b3 =new JButton("Edit");
 
     public JLabel labelipv4 = new JLabel("");
+   // public JButton b1,b2,b3;
     public JLabel labelipv6 = new JLabel("");
     public JLabel addlink = new JLabel("Ajouter Lien  ");
     public JLabel removelink = new JLabel("Supprimer Lien");
@@ -37,7 +37,9 @@ public class View {
 
 
 
-    public View() {
+    public View()
+
+    {
         frame = new JFrame("Placement d'un convertisseur Ipv4-Ipv6");
         frame.setBackground(Color.WHITE);
         frame.setLocationRelativeTo(null);
@@ -53,12 +55,20 @@ public class View {
         G1.insets = new Insets(5, 5, 5, 5);
 
 
-        imgipv4 = new ImageIcon(new ImageIcon("/net/cremi/oakodad/Bureau/img/ip6.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
-        imgipv6 = new ImageIcon(new ImageIcon("/net/cremi/oakodad/Bureau/img/ip4.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
-        imgaddlink = new ImageIcon(new ImageIcon("/net/cremi/oakodad/Bureau/img/cable.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
-        imgclear = new ImageIcon(new ImageIcon("/net/cremi/oakodad/Bureau/img/64.gif").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
-        imgrun = new ImageIcon(new ImageIcon("/net/cremi/oakodad/Bureau/img/run.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
+        imgipv4 = new ImageIcon(new ImageIcon("/home/dida/Desktop/img/ipv6.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
+        imgipv6 = new ImageIcon(new ImageIcon("/home/dida/Desktop/img/ip4.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
+        imgaddlink = new ImageIcon(new ImageIcon("/home/dida/Desktop/img/link_add.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
+        imgclear = new ImageIcon(new ImageIcon("/home/dida/Desktop/img/reset.jpeg").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
+        imgrun = new ImageIcon(new ImageIcon("/home/dida/Desktop/img/run.jpeg").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
 
+        JPanel menuaide=new JPanel();
+        menuaide.setLayout(new FlowLayout());
+        stylebutton(b1);
+        stylebutton(b2);
+        stylebutton(b3);
+        menuaide.add(b1);
+        menuaide.add(b2);
+        menuaide.add(b3);
 
         JPanel panelmenu = new JPanel();
         panelmenu.setBackground(Color.LIGHT_GRAY);
@@ -165,19 +175,26 @@ public class View {
         Topo.add(paneltp);
 
 
-        frame.add(Topo, BorderLayout.CENTER);
-        frame.add(panelmenu,BorderLayout.NORTH);
+        frame.add(Topo, BorderLayout.SOUTH);
+        frame.add(panelmenu,BorderLayout.CENTER);
+        frame.add(menuaide,BorderLayout.NORTH);
         frame.pack();
         frame.setVisible(true);
 
 
     }
 
+    public JButton getB1() {
+        return b1;
+    }
 
+    public JButton getB2() {
+        return b2;
+    }
 
-
-
-
+    public JButton getB3() {
+        return b3;
+    }
 
 
     public void stylebutton(JButton button) {
@@ -186,5 +203,6 @@ public class View {
         button.setContentAreaFilled(false);
         button.setBorderPainted(false);
     }
+
 
 }
