@@ -48,5 +48,9 @@ public class Model {
         tp.removeLink(l);
         x = 0;
     }
+    public void Chrouteur(Topology tp,Node node){
+
+
+    }
 
 }

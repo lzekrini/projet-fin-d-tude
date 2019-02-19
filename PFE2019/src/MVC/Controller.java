@@ -3,6 +3,7 @@ import jbotsim.Node;
 import jbotsim.event.SelectionListener;
 import jbotsimx.ui.CommandListener;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -36,8 +37,11 @@ public class Controller implements  ActionListener,SelectionListener,CommandList
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(e.getSource()==view.b1){view.b1.setText("this application ...... c 'est pas fini le texv"); }
+        if(e.getSource()==view.b1){ view.b1.setText("this application"); }
            // else if (e.getSource()==)
+
+       else if(e.getSource()==view.b2){ view.b2.setText("this application"); }
+       else if(e.getSource()==view.b3){ view.b3.setText("this application"); }
 
 
        else if (e.getSource() == view.ipv4) {

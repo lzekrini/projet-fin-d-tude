@@ -14,19 +14,22 @@ public class View {
     public JButton b1 =new JButton("File");
     public JButton b2 =new JButton("Help");
     public JButton b3 =new JButton("Edit");
-
+    public JLabel b11 = new JLabel("this application ");
     public JLabel labelipv4 = new JLabel("");
     public JLabel labelipv6 = new JLabel("");
     public JLabel addlink = new JLabel("Add links ");
     public JLabel  Remove = new JLabel("Remove Links");
+    public JLabel Rchange=new JLabel("modify");
     public JLabel   Run = new JLabel("     Run");
+
+    public JLabel reset = new JLabel("Reset");
     public JLabel  Menu = new JLabel("Create your topology");
     public JRadioButton  ipv4 = new JRadioButton();
     public JRadioButton  ipv6 = new JRadioButton();
     public GridBagConstraints G = new GridBagConstraints();
     public GridBagConstraints G1 = new GridBagConstraints();
-    public ImageIcon imgipv4,imgipv6,imgaddlink,imgclear,imgrun,imgremove;
-    public JButton Baddlink, Bclear,Brun,Bremove;
+    public ImageIcon imgipv4,imgipv6,imgaddlink,imgclear,imgrun,imgremove,imgrouteur,imgreset;
+    public JButton Baddlink, Bclear,Brun,Bremove,Reset,Chrouteur,mrouteur;
     public Topology tp;
     public JTopology jtp;
     public ButtonGroup bg;
@@ -58,7 +61,9 @@ public class View {
         imgaddlink = new ImageIcon(new ImageIcon("./src/img/link_add.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
         imgrun = new ImageIcon(new ImageIcon("./src/img/run.jpeg").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
         imgremove = new ImageIcon(new ImageIcon("./src/img/remove_link.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
-
+        imgrouteur=new ImageIcon((new ImageIcon("./src/img/64.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT)));
+        imgreset=new ImageIcon((new ImageIcon("./src/img/reset.jpeg").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT)));
+        /////////////////////////////////premier panel/////////////////////////////////////////////////////////
         JPanel menuaide=new JPanel();
         menuaide.setBackground(Color.LIGHT_GRAY);
         menuaide.setLayout(new FlowLayout());
@@ -68,14 +73,13 @@ public class View {
         menuaide.add(b1);
         menuaide.add(b2);
         menuaide.add(b3);
-
+/////////////////////////////////////////Panel menu////////////////////////////////////////////////////////
         JPanel panelmenu = new JPanel();
         panelmenu.setBackground(Color.CYAN);
         panelmenu.setLayout(new GridBagLayout());
 
         JPanel menu =new JPanel();
         menu.setBackground(Color.CYAN);
-        JLabel labelmenu =new JLabel("");
         menu.add(new JLabel("Create your topology"));
 
         G.gridwidth = 2;
@@ -83,19 +87,15 @@ public class View {
         G.gridy=0;
         panelmenu.add(menu,G);
 
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         labelipv4.setIcon(imgipv4);
         labelipv4.setPreferredSize(new Dimension(60,60));
         labelipv6.setIcon(imgipv6);
         labelipv6.setPreferredSize(new Dimension(60,60));
-
-
         JPanel Nmenu = new JPanel();
         Nmenu.setBackground(Color.CYAN);
         Nmenu.setLayout(new FlowLayout());
-
-
         JPanel P1 = new JPanel();
        P1.setLayout(new GridLayout(2,1));
         P1.setBackground(Color.CYAN);
@@ -116,10 +116,6 @@ public class View {
         G.gridx=0;
         G.gridy=1;
         panelmenu.add(Nmenu,G);
-
-
-
-
 
         JPanel P2 = new JPanel();
         P2.setLayout(new GridLayout(2,1));
@@ -153,13 +149,34 @@ public class View {
         P4.add(Brun);
         Nmenu.add(P4);
 
-// créer la topologie jbotsim
+        ///////////////////////////////////////////////////Suite de menu////////////////////////////////////////////////////////////::
+        JPanel PanelSuite = new JPanel();
+        PanelSuite.setLayout(new FlowLayout());
+        JPanel p5 =new JPanel(new GridLayout(2,1));
+        p5.setBackground(Color.CYAN);
+        p5.add(reset);
+        Reset =  new JButton(imgreset);
+        Style(Reset);
+        Reset.setPreferredSize(new Dimension(70,70));
+        p5.add(Reset);
+        PanelSuite.add(p5);
+        JPanel p6 =new JPanel(new GridLayout(2,1));
+        p6.setBackground(Color.CYAN);
+        p6.add(Rchange);
+        mrouteur =  new JButton(imgrouteur);
+        Style(mrouteur);
+        mrouteur.setPreferredSize(new Dimension(70,70));
+        p6.add(mrouteur);
+        PanelSuite.add(p6);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// créer la topologie jbotsim/////////////////////////////////////////////////////////////
 
 
         tp = new Topology();
-        tp.setDimensions(600,455);
+        tp.setDimensions(400,200);
         jtp = new JTopology(tp);
-        jtp.setSize(600,459);
+        jtp.setSize(400,200);
 
         tp.setLinkResolver(new LinkResolver() {
             public boolean isHeardBy(Node n1, Node n2) {
@@ -188,8 +205,12 @@ public class View {
         jtp.addCommand("Clear");
 
         frame.add(Topo, BorderLayout.SOUTH);
-        frame.add(panelmenu,BorderLayout.CENTER);
-        frame.add(menuaide,BorderLayout.NORTH);
+        frame.add(panelmenu,BorderLayout.NORTH);
+        frame.add(PanelSuite, BorderLayout.CENTER);
+       // frame.add(menuaide,BorderLayout.NORTH);
+
+
+
         frame.pack();
         frame.setVisible(true);
 
