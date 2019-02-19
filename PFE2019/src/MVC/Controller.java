@@ -26,6 +26,7 @@ public class Controller implements  ActionListener,SelectionListener,CommandList
         view.ipv4.addActionListener(this);
         view.ipv6.addActionListener(this);
         view.jtp.addCommandListener(this);
+        view.mrouteur.addActionListener(this);
 
 
 
@@ -55,7 +56,8 @@ public class Controller implements  ActionListener,SelectionListener,CommandList
         }
         else if(e.getSource()==view.Bremove) { x= "Remove";
         }
-
+        else if (e.getSource()==view.mrouteur) {x= "Modify";
+        }
     }
 
 
@@ -69,6 +71,7 @@ public class Controller implements  ActionListener,SelectionListener,CommandList
 
        else if (x.equals("Remove")) { model.countdown(view.tp,node);
         }
+        else if (x.equals("Modify")){model.modify(view.tp,node);}
 
     }
 
