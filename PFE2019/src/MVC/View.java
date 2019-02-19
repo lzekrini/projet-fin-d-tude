@@ -23,9 +23,6 @@ public class View {
     public JLabel   Run = new JLabel("     Run");
 
     public JLabel reset = new JLabel("Reset");
-    JTextArea textArea = new JTextArea(5, 20);
-    JScrollPane scrollPane = new JScrollPane(textArea);
-  //  textArea.setEditable(false);
     public JLabel  Menu = new JLabel("Create your topology");
     public JRadioButton  ipv4 = new JRadioButton();
     public JRadioButton  ipv6 = new JRadioButton();
@@ -36,6 +33,11 @@ public class View {
     public Topology tp;
     public JTopology jtp;
     public ButtonGroup bg;
+
+
+
+
+
     public View()
 
     {
@@ -54,16 +56,15 @@ public class View {
         G1.insets = new Insets(5, 5, 5, 5);
 
 
-        imgipv4 = new ImageIcon(new ImageIcon("./src/img/ip4.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
-        imgipv6 = new ImageIcon(new ImageIcon("./src/img/ipv6.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
+        imgipv4 = new ImageIcon(new ImageIcon("./src/img/ipv4.png").getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+        imgipv6 = new ImageIcon(new ImageIcon("./src/img/ipv6.png").getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
         imgaddlink = new ImageIcon(new ImageIcon("./src/img/link_add.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
-        imgrun = new ImageIcon(new ImageIcon("./src/img/run.jpeg").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
-        imgremove = new ImageIcon(new ImageIcon("./src/img/remove_link.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
-        imgrouteur=new ImageIcon((new ImageIcon("./src/img/64.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT)));
-        imgreset=new ImageIcon((new ImageIcon("./src/img/reset.jpeg").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT)));
+        imgrun = new ImageIcon(new ImageIcon("./src/img/run.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
+        imgremove = new ImageIcon(new ImageIcon("./src/img/remove_link.png").getImage().getScaledInstance(65, 65, Image.SCALE_DEFAULT));
+        imgrouteur=new ImageIcon((new ImageIcon("./src/img/64.png").getImage().getScaledInstance(72, 72, Image.SCALE_DEFAULT)));
         /////////////////////////////////premier panel/////////////////////////////////////////////////////////
         JPanel menuaide=new JPanel();
-        menuaide.setBackground(Color.LIGHT_GRAY);
+        menuaide.setBackground(new Color(86,118,234));
         menuaide.setLayout(new FlowLayout());
         Style(b1);
         Style(b2);
@@ -73,11 +74,11 @@ public class View {
         menuaide.add(b3);
 /////////////////////////////////////////Panel menu////////////////////////////////////////////////////////
         JPanel panelmenu = new JPanel();
-        panelmenu.setBackground(Color.CYAN);
+        panelmenu.setBackground(new Color(177,218,237));
         panelmenu.setLayout(new GridBagLayout());
 
         JPanel menu =new JPanel();
-        menu.setBackground(Color.CYAN);
+        menu.setBackground(new Color(177,218,237));
         menu.add(new JLabel("Create your topology"));
 
         G.gridwidth = 2;
@@ -92,20 +93,20 @@ public class View {
         labelipv6.setIcon(imgipv6);
         labelipv6.setPreferredSize(new Dimension(60,60));
         JPanel Nmenu = new JPanel();
-        Nmenu.setBackground(Color.CYAN);
+        Nmenu.setBackground(new Color(177,218,237));
         Nmenu.setLayout(new FlowLayout());
         JPanel P1 = new JPanel();
-       P1.setLayout(new GridLayout(2,1));
-        P1.setBackground(Color.CYAN);
-        P1.add(new JLabel("    Choose a router :    "));
+        P1.setLayout(new GridLayout(2,1));
+        P1.setBackground(new Color(177,218,237));
+        P1.add(new JLabel("    Choose a router     "));
 
         JPanel P11 = new JPanel();
-        P11.setBackground(Color.CYAN);
-        ipv4.setBackground(Color.CYAN);
+        P11.setBackground(new Color(177,218,237));
+        ipv4.setBackground(new Color(177,218,237));
         P11.add(ipv4);
         P11.add(labelipv4);
         P11.add(ipv6);
-        ipv6.setBackground(Color.CYAN);
+        ipv6.setBackground(new Color(177,218,237));
         P11.add(labelipv6);
         P1.add(P11);
         Nmenu.add(P1);
@@ -117,7 +118,7 @@ public class View {
 
         JPanel P2 = new JPanel();
         P2.setLayout(new GridLayout(2,1));
-        P2.setBackground(Color.CYAN);
+        P2.setBackground(new Color(177,218,237));
         P2.add(addlink);
         Baddlink = new JButton(imgaddlink);
         Style(Baddlink);
@@ -128,7 +129,7 @@ public class View {
 
         JPanel P3 = new JPanel();
         P3.setLayout(new GridLayout(2,1));
-        P3.setBackground(Color.CYAN);
+        P3.setBackground(new Color(177,218,237));
         P3.add(Remove);
         Bremove =  new JButton(imgremove);
         Style(Bremove);
@@ -138,7 +139,7 @@ public class View {
 
 
         JPanel P4 =new JPanel(new GridLayout(2,1));
-        P4.setBackground(Color.CYAN);
+        P4.setBackground(new Color(177,218,237));
         P4.add(Rchange);
         mrouteur =  new JButton(imgrouteur);
         Style(mrouteur);
@@ -150,7 +151,7 @@ public class View {
 
         JPanel P5 = new JPanel();
         P5.setLayout(new GridLayout(2,1));
-        P5.setBackground(Color.CYAN);
+        P5.setBackground(new Color(177,218,237));
         P5.add(Run);
         Brun =  new JButton(imgrun);
         Style(Brun);
@@ -159,15 +160,15 @@ public class View {
         Nmenu.add(P5);
 
         ///////////////////////////////////////////////////Suite de menu////////////////////////////////////////////////////////////::
-       // JPanel PanelSuite = new JPanel();
-       // PanelSuite.setLayout(new FlowLayout());
-       // JPanel p5 =new JPanel(new GridLayout(2,1));
-       // p5.setBackground(Color.CYAN);
+        // JPanel PanelSuite = new JPanel();
+        // PanelSuite.setLayout(new FlowLayout());
+        // JPanel p5 =new JPanel(new GridLayout(2,1));
+        // p5.setBackground(Color.CYAN);
         //p5.add(reset);
         //Reset =  new JButton(imgreset);
         //Style(Reset);
         //Reset.setPreferredSize(new Dimension(70,70));
-       // p5.add(Reset);
+        // p5.add(Reset);
         //PanelSuite.add(p5);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -188,10 +189,10 @@ public class View {
 
 
         JPanel  Topo = new JPanel();
-        Topo.setBackground(Color.WHITE);
+        Topo.setBackground(new Color(177,218,237));
 
         JPanel paneltp = new JPanel();
-        paneltp.setBackground(Color.white);
+        paneltp.setBackground(new Color(177,218,237));
 
         bg = new ButtonGroup();
         bg.add(ipv4);
@@ -200,16 +201,16 @@ public class View {
 
 
         paneltp.add(jtp);
-        Topo.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
-        paneltp.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
+        Topo.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, new Color(177,218,237)));
+        paneltp.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2,new Color(177,218,237)));
         Topo.add(paneltp);
 
         jtp.addCommand("Clear");
 
         frame.add(Topo, BorderLayout.SOUTH);
-        frame.add(panelmenu,BorderLayout.CENTER);
-       // frame.add(PanelSuite, BorderLayout.CENTER);
-       frame.add(menuaide,BorderLayout.NORTH);
+        frame.add(panelmenu,BorderLayout.NORTH);
+        // frame.add(PanelSuite, BorderLayout.CENTER);
+        // frame.add(menuaide,BorderLayout.NORTH);
 
 
 
@@ -226,7 +227,5 @@ public class View {
         button.setBorderPainted(false);
     }
 
-    }
-
-
+}
 

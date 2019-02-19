@@ -27,6 +27,7 @@ public class Controller implements  ActionListener,SelectionListener,CommandList
         view.ipv6.addActionListener(this);
         view.jtp.addCommandListener(this);
         view.mrouteur.addActionListener(this);
+        view.tp.setDefaultNodeModel(Ipv4.class);
 
 
 

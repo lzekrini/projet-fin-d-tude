@@ -23,8 +23,8 @@ public class Model {
     public void addlink(Topology tp) {
 
         Link l = new Link(tp.getNodes().get(index[0]), tp.getNodes().get(index[1]));
-        l.setWidth(2);
-        l.setColor(Color.GREEN);
+        l.setWidth(4);
+        l.setColor(Color.BLACK);
         tp.addLink(l);
         x = 0;
 
