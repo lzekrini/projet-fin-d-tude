@@ -51,6 +51,7 @@ public class Model {
     public void Chrouteur(Topology tp,Node node){
 
 
+
     }
 
 }

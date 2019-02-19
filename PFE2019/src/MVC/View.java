@@ -19,7 +19,7 @@ public class View {
     public JLabel labelipv6 = new JLabel("");
     public JLabel addlink = new JLabel("Add links ");
     public JLabel  Remove = new JLabel("Remove Links");
-    public JLabel Rchange=new JLabel("modify");
+    public JLabel Rchange=new JLabel("   Modify");
     public JLabel   Run = new JLabel("     Run");
 
     public JLabel reset = new JLabel("Reset");
@@ -139,44 +139,48 @@ public class View {
         Nmenu.add(P3);
 
 
-        JPanel P4 = new JPanel();
-        P4.setLayout(new GridLayout(2,1));
+        JPanel P4 =new JPanel(new GridLayout(2,1));
         P4.setBackground(Color.CYAN);
-        P4.add(Run);
-        Brun =  new JButton(imgrun);
-        Style(Brun);
-        Brun.setPreferredSize(new Dimension(70,70));
-        P4.add(Brun);
-        Nmenu.add(P4);
-
-        ///////////////////////////////////////////////////Suite de menu////////////////////////////////////////////////////////////::
-        JPanel PanelSuite = new JPanel();
-        PanelSuite.setLayout(new FlowLayout());
-        JPanel p5 =new JPanel(new GridLayout(2,1));
-        p5.setBackground(Color.CYAN);
-        p5.add(reset);
-        Reset =  new JButton(imgreset);
-        Style(Reset);
-        Reset.setPreferredSize(new Dimension(70,70));
-        p5.add(Reset);
-        PanelSuite.add(p5);
-        JPanel p6 =new JPanel(new GridLayout(2,1));
-        p6.setBackground(Color.CYAN);
-        p6.add(Rchange);
+        P4.add(Rchange);
         mrouteur =  new JButton(imgrouteur);
         Style(mrouteur);
         mrouteur.setPreferredSize(new Dimension(70,70));
-        p6.add(mrouteur);
-        PanelSuite.add(p6);
+        P4.add(mrouteur);
+        Nmenu.add(P4);
+
+
+
+        JPanel P5 = new JPanel();
+        P5.setLayout(new GridLayout(2,1));
+        P5.setBackground(Color.CYAN);
+        P5.add(Run);
+        Brun =  new JButton(imgrun);
+        Style(Brun);
+        Brun.setPreferredSize(new Dimension(70,70));
+        P5.add(Brun);
+        Nmenu.add(P5);
+
+        ///////////////////////////////////////////////////Suite de menu////////////////////////////////////////////////////////////::
+       // JPanel PanelSuite = new JPanel();
+       // PanelSuite.setLayout(new FlowLayout());
+       // JPanel p5 =new JPanel(new GridLayout(2,1));
+       // p5.setBackground(Color.CYAN);
+        //p5.add(reset);
+        //Reset =  new JButton(imgreset);
+        //Style(Reset);
+        //Reset.setPreferredSize(new Dimension(70,70));
+       // p5.add(Reset);
+        //PanelSuite.add(p5);
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // créer la topologie jbotsim/////////////////////////////////////////////////////////////
 
 
         tp = new Topology();
-        tp.setDimensions(400,200);
+        tp.setDimensions(600,500);
         jtp = new JTopology(tp);
-        jtp.setSize(400,200);
+        jtp.setSize(500,400);
 
         tp.setLinkResolver(new LinkResolver() {
             public boolean isHeardBy(Node n1, Node n2) {
@@ -206,7 +210,7 @@ public class View {
 
         frame.add(Topo, BorderLayout.SOUTH);
         frame.add(panelmenu,BorderLayout.NORTH);
-        frame.add(PanelSuite, BorderLayout.CENTER);
+       // frame.add(PanelSuite, BorderLayout.CENTER);
        // frame.add(menuaide,BorderLayout.NORTH);
 
 
