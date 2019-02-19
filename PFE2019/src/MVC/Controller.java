@@ -19,8 +19,6 @@ public class Controller implements  ActionListener,SelectionListener,CommandList
         ////////////////////////////Ajout des évenements///////////////////////////
         view.tp.addSelectionListener(this);
         view.b1.addActionListener(this);
-        view.b2.addActionListener(this);
-        view.b3.addActionListener(this);
         view.Baddlink.addActionListener(this);
         view.Bremove.addActionListener(this);
         view.ipv4.addActionListener(this);
@@ -39,13 +37,15 @@ public class Controller implements  ActionListener,SelectionListener,CommandList
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(e.getSource()==view.b1){JTextArea textArea = new JTextArea(5, 20);
-            JScrollPane scrollPane = new JScrollPane(textArea); }
+        if(e.getSource()==view.b1){view.b1.setToolTipText("<html>"
+                + "zekrini lydia"
+                +"<br>"
+                + "hamdi bissen"
+                +"<br>"
+                + "akodad oussama"
 
-       else if(e.getSource()==view.b2){ view.b2.setText("this application"); }
-       else if(e.getSource()==view.b3){ view.b3.setText("this application"); }
-
-
+                + "</html>");
+         }
        else if (e.getSource() == view.ipv4) {
             view.tp.setDefaultNodeModel(Ipv4.class);
         }

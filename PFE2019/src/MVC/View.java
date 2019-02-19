@@ -11,10 +11,7 @@ import jbotsimx.ui.*;
 public class View {
 
     private JFrame frame;
-    public JButton b1 =new JButton("File");
-    public JButton b2 =new JButton("Help");
-    public JButton b3 =new JButton("Edit");
-    public JLabel b11 = new JLabel("this application ");
+    public JButton b1 =new JButton("Read me");
     public JLabel labelipv4 = new JLabel("");
     public JLabel labelipv6 = new JLabel("");
     public JLabel addlink = new JLabel("Add links ");
@@ -43,8 +40,9 @@ public class View {
     {
         frame = new JFrame("Placement d'un convertisseur Ipv4-Ipv6");
         frame.setBackground(Color.WHITE);
+        frame.setSize(800,400);
         frame.setLocationRelativeTo(null);
-        frame.setResizable(true);
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
 
@@ -61,17 +59,15 @@ public class View {
         imgaddlink = new ImageIcon(new ImageIcon("./src/img/link_add.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
         imgrun = new ImageIcon(new ImageIcon("./src/img/run.png").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
         imgremove = new ImageIcon(new ImageIcon("./src/img/remove_link.png").getImage().getScaledInstance(65, 65, Image.SCALE_DEFAULT));
-        imgrouteur=new ImageIcon((new ImageIcon("./src/img/64.png").getImage().getScaledInstance(72, 72, Image.SCALE_DEFAULT)));
+        imgrouteur=new ImageIcon((new ImageIcon("./src/img/64.png").getImage().getScaledInstance(68, 68, Image.SCALE_DEFAULT)));
         /////////////////////////////////premier panel/////////////////////////////////////////////////////////
         JPanel menuaide=new JPanel();
-        menuaide.setBackground(new Color(86,118,234));
+        menuaide.setBackground(new Color(177,218,237));
         menuaide.setLayout(new FlowLayout());
         Style(b1);
-        Style(b2);
-        Style(b3);
+        menuaide.add(new JLabel("                                                                                                                                                                                                                             "));
         menuaide.add(b1);
-        menuaide.add(b2);
-        menuaide.add(b3);
+
 /////////////////////////////////////////Panel menu////////////////////////////////////////////////////////
         JPanel panelmenu = new JPanel();
         panelmenu.setBackground(new Color(177,218,237));
@@ -79,7 +75,11 @@ public class View {
 
         JPanel menu =new JPanel();
         menu.setBackground(new Color(177,218,237));
-        menu.add(new JLabel("Create your topology"));
+        menu.setLayout(new FlowLayout());
+        JLabel b= new JLabel("Create your topology");
+
+        b.setFont(new Font("Serif",Font.PLAIN,20));
+        menu.add(b);
 
         G.gridwidth = 2;
         G.gridx=0;
@@ -159,27 +159,15 @@ public class View {
         P5.add(Brun);
         Nmenu.add(P5);
 
-        ///////////////////////////////////////////////////Suite de menu////////////////////////////////////////////////////////////::
-        // JPanel PanelSuite = new JPanel();
-        // PanelSuite.setLayout(new FlowLayout());
-        // JPanel p5 =new JPanel(new GridLayout(2,1));
-        // p5.setBackground(Color.CYAN);
-        //p5.add(reset);
-        //Reset =  new JButton(imgreset);
-        //Style(Reset);
-        //Reset.setPreferredSize(new Dimension(70,70));
-        // p5.add(Reset);
-        //PanelSuite.add(p5);
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // créer la topologie jbotsim/////////////////////////////////////////////////////////////
 
 
         tp = new Topology();
-        tp.setDimensions(600,500);
+        tp.setDimensions(1000,500);
         jtp = new JTopology(tp);
-        jtp.setSize(500,400);
+        jtp.setSize(1000,500);
 
         tp.setLinkResolver(new LinkResolver() {
             public boolean isHeardBy(Node n1, Node n2) {
@@ -208,9 +196,8 @@ public class View {
         jtp.addCommand("Clear");
 
         frame.add(Topo, BorderLayout.SOUTH);
-        frame.add(panelmenu,BorderLayout.NORTH);
-        // frame.add(PanelSuite, BorderLayout.CENTER);
-        // frame.add(menuaide,BorderLayout.NORTH);
+        frame.add(panelmenu,BorderLayout.CENTER);
+        frame.add(menuaide,BorderLayout.NORTH);
 
 
 
