@@ -2,8 +2,6 @@ package MVC;
 import jbotsim.*;
 import jbotsim.Color;
 import jbotsim.Point;
-
-import java.awt.geom.Point2D;
 import java.awt.*;
 import java.util.*;
 
@@ -60,7 +58,9 @@ public class Model {
         //////////////////////////////////Methode pour changer le routeur//////////////:
         public void modify(Topology topo, Node node) {
             if (node instanceof Ipv4) {
+                Point p= node.getLocation();
                 Ipv6 ip6 = new Ipv6();
+                ip6.setLocation(p);
                 ip6.setID(node.getID());
                 topo.addNode(ip6);
                 for (Node n : node.getNeighbors()) {
@@ -72,8 +72,10 @@ public class Model {
                     topo.removeLink(topo.getLink(node, n));
                 }
                 topo.removeNode(node);
-            } else if (node instanceof Ipv4) {
+            } else if (node instanceof Ipv6) {
+                Point p= node.getLocation();
                 Ipv4 ip4 = new Ipv4();
+                ip4.setLocation(p);
                 ip4.setID(node.getID());
                 topo.addNode(ip4);
                 for (Node n : node.getNeighbors()) {
@@ -82,7 +84,7 @@ public class Model {
                     topo.addLink(l);
                 }
                 for (Node n : node.getNeighbors()) {
-                    topo.removeLink(topo.getLink(node, n));
+                    topo.removeLink(topo.getLink(node,n));
                 }
                 topo.removeNode(node);
             }

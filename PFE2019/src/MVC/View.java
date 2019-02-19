@@ -23,6 +23,9 @@ public class View {
     public JLabel   Run = new JLabel("     Run");
 
     public JLabel reset = new JLabel("Reset");
+    JTextArea textArea = new JTextArea(5, 20);
+    JScrollPane scrollPane = new JScrollPane(textArea);
+  //  textArea.setEditable(false);
     public JLabel  Menu = new JLabel("Create your topology");
     public JRadioButton  ipv4 = new JRadioButton();
     public JRadioButton  ipv6 = new JRadioButton();
@@ -33,11 +36,6 @@ public class View {
     public Topology tp;
     public JTopology jtp;
     public ButtonGroup bg;
-
-
-
-
-
     public View()
 
     {
@@ -209,9 +207,9 @@ public class View {
         jtp.addCommand("Clear");
 
         frame.add(Topo, BorderLayout.SOUTH);
-        frame.add(panelmenu,BorderLayout.NORTH);
+        frame.add(panelmenu,BorderLayout.CENTER);
        // frame.add(PanelSuite, BorderLayout.CENTER);
-       // frame.add(menuaide,BorderLayout.NORTH);
+       frame.add(menuaide,BorderLayout.NORTH);
 
 
 

@@ -38,8 +38,8 @@ public class Controller implements  ActionListener,SelectionListener,CommandList
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(e.getSource()==view.b1){ view.b1.setText("this application"); }
-           // else if (e.getSource()==)
+        if(e.getSource()==view.b1){JTextArea textArea = new JTextArea(5, 20);
+            JScrollPane scrollPane = new JScrollPane(textArea); }
 
        else if(e.getSource()==view.b2){ view.b2.setText("this application"); }
        else if(e.getSource()==view.b3){ view.b3.setText("this application"); }
