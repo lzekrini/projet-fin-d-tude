@@ -56,40 +56,53 @@ public class Model {
         }
 
         //////////////////////////////////Methode pour changer le routeur//////////////:
-        public void modify(Topology topo, Node node) {
-            if (node instanceof Ipv4) {
-                Point p= node.getLocation();
-                Ipv6 ip6 = new Ipv6();
-                ip6.setLocation(p);
-                ip6.setID(node.getID());
-                topo.addNode(ip6);
-                for (Node n : node.getNeighbors()) {
-                    Link l = new Link(ip6, n);
-                    l.setWidth(4);
-                    topo.addLink(l);
-                }
-                for (Node n : node.getNeighbors()) {
-                    topo.removeLink(topo.getLink(node, n));
-                }
-                topo.removeNode(node);
-            } else if (node instanceof Ipv6) {
-                Point p= node.getLocation();
-                Ipv4 ip4 = new Ipv4();
-                ip4.setLocation(p);
-                ip4.setID(node.getID());
-                topo.addNode(ip4);
-                for (Node n : node.getNeighbors()) {
-                    Link l = new Link(ip4, n);
-                    l.setWidth(4);
-                    topo.addLink(l);
-                }
-                for (Node n : node.getNeighbors()) {
-                    topo.removeLink(topo.getLink(node,n));
-                }
-                topo.removeNode(node);
-            }
-        }
-    }
+
+
+
+       public void modify (Topology topo, Node node )
+       {
+           if ( node instanceof Ipv4) {
+               if ( ((Ipv4) node).getType().equals("IPV4"))
+               {
+               ((Ipv4) node).setType("IPV6");
+
+               node.setIcon("./src/img/ipv6.png");
+               System.out.println(((Ipv4) node).getType());
+               }
+               else
+               {
+                   ((Ipv4) node).setType("IPV4");
+
+                   node.setIcon("./src/img/ipv4.png");
+                   System.out.println(((Ipv4) node).getType());
+               }
+           }
+
+
+           if ( node instanceof Ipv6)
+           { if ( ((Ipv6) node).getType().equals("IPV6"))
+           {
+               ((Ipv6) node).setType("IPV4");
+               node.setIcon("./src/img/ipv4.png");
+               System.out.println(((Ipv6) node).getType());
+           }
+           else
+           {
+               ((Ipv6) node).setType("IPV6");
+
+               node.setIcon("./src/img/ipv6.png");
+               System.out.println(((Ipv6) node).getType());}
+
+
+       }
+}}
+
+
+
+
+
+
+
 
 
 

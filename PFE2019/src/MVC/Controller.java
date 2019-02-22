@@ -48,6 +48,7 @@ public class Controller implements  ActionListener,SelectionListener,CommandList
          }
        else if (e.getSource() == view.ipv4) {
             view.tp.setDefaultNodeModel(Ipv4.class);
+
         }
         else if(e.getSource() == view.ipv6) {
             view.tp.setDefaultNodeModel(Ipv6.class);
