@@ -21,6 +21,7 @@ public class Controller implements  ActionListener,SelectionListener,CommandList
         view.b1.addActionListener(this);
         view.Baddlink.addActionListener(this);
         view.Bremove.addActionListener(this);
+        view.Brun.addActionListener(this);
         view.ipv4.addActionListener(this);
         view.ipv6.addActionListener(this);
         view.jtp.addCommandListener(this);
@@ -60,6 +61,12 @@ public class Controller implements  ActionListener,SelectionListener,CommandList
         }
         else if (e.getSource()==view.mrouteur) {x= "Modify";
         }
+        else if ( e.getSource()==view.Brun){
+
+           // model.color(view.tp);
+            model.prof(view.tp);
+
+        }
     }
 
 
@@ -74,6 +81,7 @@ public class Controller implements  ActionListener,SelectionListener,CommandList
        else if (x.equals("Remove")) { model.countdown(view.tp,node);
         }
         else if (x.equals("Modify")){model.modify(view.tp,node);}
+
 
     }
 
