@@ -4,6 +4,7 @@ import jbotsim.Color;
 import jbotsim.Point;
 import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 
 public class Model {
@@ -192,9 +193,104 @@ public class Model {
     }
 
 
+/////////////////////////////////////////// Connected Links ////////////////////////////////////////////////////////////
+
+
+    ArrayList<Link> connectedLinks= new ArrayList<>();
+
+    public ArrayList<Link> connectedL ( Topology tp){
+        final List<Link> links = tp.getLinks();
+
+
+        for ( int i=0; i<links.size();i++){
+
+            Link l= links.get(i);
+            Node n1= l.endpoint(0);
+            Node n2= l.endpoint(1);
+            if ( n1 instanceof Ipv4 && n2 instanceof Ipv4 && (!((Ipv4) n1).getType().equals(((Ipv4) n2).getType()))) {
+                connectedLinks.add(l);
+                l.setColor(Color.orange);
+            }
+            else if ( n1 instanceof Ipv4 && n2 instanceof Ipv6 && (!((Ipv4) n1).getType().equals(((Ipv6) n2).getType()))) {
+                connectedLinks.add(l);
+                l.setColor(Color.orange);
+            }
+            else if (n1 instanceof Ipv6 && n2 instanceof  Ipv6 && (!((Ipv6) n1).getType().equals(((Ipv6) n2).getType()))) {
+                connectedLinks.add(l);
+                l.setColor(Color.orange);
+            }
+            else if ( n1 instanceof Ipv6 && n2 instanceof Ipv4 && (!((Ipv6) n1).getType().equals(((Ipv4) n2).getType()))) {
+
+                connectedLinks.add(l);
+                l.setColor(Color.orange);
+            }
+        }
+        return  connectedLinks;
+    }
+
+///////////////////////////////////// Convertisseur /////////////////////////////////////////////////////////////////
+
+        ArrayList<Node> listConvert= new ArrayList<>();
+
+      public void Convert (ArrayList<Link> connectedLinks,Topology tp){
+
+          for ( int i=0; i< connectedLinks.size(); i++) {
+              Link l = connectedLinks.get(i);
+              Node n1 = l.endpoint(0);
+              listConvert.add(n1);
+              Node n2 = l.endpoint(1);
+              listConvert.add(n2);
+                System.out.println(n1.getNeighbors().size());
+                  if (n1 instanceof Ipv6 && n2 instanceof Ipv6) {
+                      ((Ipv6) n1).setType("Conv");
+                      ((Ipv6) n2).setType("Conv");
+                      ((Ipv6) n1).setIcon("./src/img/Conv.png");
+                      ((Ipv6) n2).setIcon("./src/img/Conv.png");
+                  }
+                  else if (n1 instanceof Ipv4 && n2 instanceof Ipv6)  {
+                          ((Ipv4) n1).setType("Conv");
+                           ((Ipv6) n2).setType("Conv");
+                          ((Ipv4) n1).setIcon("./src/img/Conv.png");
+                          ((Ipv6) n2).setIcon("./src/img/Conv.png");
+
+                  }
+                   else if (n1 instanceof Ipv4 && n2 instanceof Ipv4) {
+                      ((Ipv4) n1).setType("Conv");
+                     ((Ipv4) n2).setType("Conv");
+                      ((Ipv4) n1).setIcon("./src/img/Conv.png");
+                      ((Ipv4) n2).setIcon("./src/img/Conv.png");
+                  }
+                  else if (n1 instanceof Ipv6 && n2 instanceof Ipv4) {
+                          ((Ipv6) n1).setType("Conv");
+                         ((Ipv4) n2).setType("Conv");
+                         ((Ipv6) n1).setIcon("./src/img/Conv.png");
+                         ((Ipv4) n2).setIcon("./src/img/Conv.png");
+                  }
+
+              }
+          }
+
+//////////////////////////////////////// Minimisation Convertion ///////////////////////////////////////////////////////
 
 
 
+
+
+  /*  public void ConvertMinimiz( Topology tp,ArrayList<Node>listConvert){
+        Boolean allConvert= true;
+
+        for ( int i=0; i<listConvert.size(); i++){
+
+            Node n= listConvert.get(i);
+            List<Node> neigbors= n.getNeighbors();
+            for ( int j=0; j< neigbors.size(); j++){
+               Node neighbor= neigbors.get
+            }
+
+        }
+    }*/
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public void prof (Topology tp) {
         Node root = tp.getNodes().get(0);
@@ -209,7 +305,19 @@ public class Model {
         for ( int i=0; i< distinctList.size();i++)
             System.out.println(distinctList.get(i));
 
+            ArrayList<Link>liste= connectedL(tp);
+        for ( int i=0; i< liste.size();i++)
+            System.out.println(liste.get(i));
+
+        Convert(liste,tp);
+
     }
+
+
+
+
+
+
     }//endClass
 
 
