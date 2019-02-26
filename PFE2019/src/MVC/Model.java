@@ -270,25 +270,179 @@ public class Model {
               }
           }
 
-//////////////////////////////////////// Minimisation Convertion ///////////////////////////////////////////////////////
+//////////////////////////////////////// Minimisation Convertion 1 ///////////////////////////////////////////////////////
 
 
 
 
 
-  /*  public void ConvertMinimiz( Topology tp,ArrayList<Node>listConvert){
+   public void ConvertMinimiz( ArrayList<Node>listConvert){
         Boolean allConvert= true;
 
         for ( int i=0; i<listConvert.size(); i++){
 
             Node n= listConvert.get(i);
+           // if ( (n instanceof Ipv6 && ((Ipv6) n).getType().equals("Ipv6")) ||(n instanceof Ipv4 && ((Ipv6) n).getType().equals("Ipv4")) ){
+
             List<Node> neigbors= n.getNeighbors();
+
             for ( int j=0; j< neigbors.size(); j++){
-               Node neighbor= neigbors.get
+                Node neigbor = neigbors.get(j);
+                if ( neigbor instanceof Ipv6 && (!((Ipv6) neigbor).getType().equals("Conv"))){
+                    allConvert=false;
+
+                }
+                else if ( neigbor instanceof Ipv4 && (!((Ipv4) neigbor).getType().equals("Conv"))){
+                    allConvert= false;
+                }
+
+        }
+
+            if ( allConvert==true)
+            {
+                if ( n instanceof Ipv6)
+                {
+                    ((Ipv6) n).setType("IPV6");
+                    n.setIcon("./src/img/ipv6.png");
+                    listConvert.remove(n);
+                }
+                else
+                {
+                    ((Ipv4) n).setType("IPV4");
+                    n.setIcon("./src/img/ipv4.png");
+                    listConvert.remove(n);
+                }
+            }
+    }}
+
+  ///////////////////////////////////////// Minimisation Convertion 2 //////////////////////////////////////////////////
+
+    public void minimisationConvCompo ( ArrayList<ArrayList>conv ){
+        for (int i=0; i<conv.size(); i++){
+
+            ArrayList<Node>liste= conv.get(i);
+            for ( int j=0; j<liste.size();j++){
+
+                Node n= liste.get(j);
+                if (( n instanceof  Ipv6 &&( ((Ipv6) n).getType().equals("Conv")))||( n instanceof  Ipv4 &&( ((Ipv4) n).getType().equals("Conv"))) ){
+
+                    for ( int k=j+1; k<liste.size(); k++)
+                    {
+                        Node n1= liste.get(k);
+                        if ( n1 instanceof Ipv6 && ((Ipv6) n1).getType().equals("Conv")){
+                            ((Ipv6) n1).setType("IPV6");
+                            n1.setIcon("./src/img/ipv6.png");
+                            listConvert.remove(n1);
+                        }
+                        else if ( n1 instanceof Ipv4 && ((Ipv4) n1).getType().equals("Conv")){
+                            ((Ipv4) n1).setType("IPV4");
+                            n1.setIcon("./src/img/ipv4.png");
+                            listConvert.remove(n1);
+                        }
+                    }
+                }
+
+
             }
 
         }
-    }*/
+
+
+    }
+
+////////////////////////////////////////////// Minimisation Convertion 3 ///////////////////////////////////////////////
+
+    public void minimisationAllNeighbor( ArrayList<Node>convrt, Topology tp)
+    {
+        for ( int i=0; i<convrt.size(); i++){
+            Node node= convrt.get(i);
+            if ( node.getNeighbors().size()== tp.getNodes().size()-1)
+            {
+                List<Node> list= node.getNeighbors();
+                for ( int j=0; j<list.size(); j++){
+
+                    Node n= list.get(j);
+                    if ( n instanceof Ipv6 && convrt.contains(n))
+                    {
+                        ((Ipv6) n).setType("IPV6");
+                        n.setIcon("./src/img/ipv6.png");
+                        convrt.remove(n);
+                    }
+                    else if ( n instanceof Ipv4 && convrt.contains(n)){
+
+                        ((Ipv4) n).setType("IPV4");
+                        n.setIcon("./src/img/ipv4.png");
+                        convrt.remove(n);
+                    }
+                }
+
+            }
+        }
+
+
+
+    }
+
+
+    ////////////////////////////////////// Minimisation Convertion 4 //////////////////////////////////////////////////
+    public void minimisation4( ArrayList<Node>convrt1, Topology tp)
+    {
+       for ( int i=0; i<tp.getNodes().size(); i++){
+           Node n= tp.getNodes().get(i);
+           List<Link>allLinks = n.getLinks();
+           boolean allLinksConnected= true;
+           for ( int j=0; j<allLinks.size();j++){
+               Link l= allLinks.get(j);
+               if ( l.getColor()!=Color.orange)
+                   allLinksConnected=false;
+           }
+           List<Node> neighbors= n.getNeighbors();
+           boolean allNeighborsConvert=true;
+           for ( int j=0; j<neighbors.size();j++){
+               Node n1= neighbors.get(j);
+               if ( (convrt1.contains(n1))== false )
+               {
+                   allNeighborsConvert=false;
+               }
+           }
+
+
+           if ( allLinksConnected==true && allNeighborsConvert==true ){
+               if ( n instanceof Ipv6){
+                   ((Ipv6) n).setType("Conv");
+                   n.setIcon("./src/img/Conv.png");
+                   convrt1.add(n);
+               }
+               else if ( n instanceof Ipv4) {
+                   ((Ipv4) n).setType("Conv");
+                   n.setIcon("./src/img/Conv.png");
+                   convrt1.add(n);
+               }
+
+               for ( int m=0; m< n.getNeighbors().size(); m++){
+                   Node n2= n.getNeighbors().get(m);
+                   if ( n2 instanceof Ipv6){
+                       ((Ipv6) n2).setType("IPV6");
+                       n2.setIcon("./src/img/ipv6.png");
+                       convrt1.remove(n2);
+
+                   }
+                   else if ( n2 instanceof Ipv4){
+                       ((Ipv4) n2).setType("IPV4");
+                       n2.setIcon("./src/img/ipv4.png");
+                       convrt1.remove(n2);
+
+                   }
+
+
+               }
+
+           }
+       }
+
+
+
+    }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -298,21 +452,28 @@ public class Model {
 
 
         parcours(root, visitedlist, compo1);
-        set.addAll(composante) ;
-        ArrayList distinctList = new ArrayList(set) ;
+        set.addAll(composante);
+        ArrayList distinctList = new ArrayList(set);
         System.out.println(distinctList.size());
 
-        for ( int i=0; i< distinctList.size();i++)
+        for (int i = 0; i < distinctList.size(); i++)
             System.out.println(distinctList.get(i));
 
-            ArrayList<Link>liste= connectedL(tp);
-        for ( int i=0; i< liste.size();i++)
+        ArrayList<Link> liste = connectedL(tp);
+       for (int i = 0; i < liste.size(); i++)
             System.out.println(liste.get(i));
 
-        Convert(liste,tp);
+        Convert(liste, tp);
 
+        ///// Afficher les Routeurs Convertisseurs /////
+        for (int i = 0; i < listConvert.size(); i++)
+            System.out.println(listConvert.get(i));
+        ConvertMinimiz(listConvert);
+        minimisationConvCompo(distinctList);
+        minimisationAllNeighbor(listConvert,tp);
+       // minimisation4(listConvert,tp);
     }
-
+        ////////////////////////////////////////////////
 
 
 
