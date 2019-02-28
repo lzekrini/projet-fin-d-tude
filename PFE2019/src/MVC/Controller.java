@@ -2,8 +2,6 @@ package MVC;
 import jbotsim.Node;
 import jbotsim.event.SelectionListener;
 import jbotsimx.ui.CommandListener;
-
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,11 +10,10 @@ public class Controller implements  ActionListener,SelectionListener,CommandList
     View view;
     String x;
 
-
     public Controller(Model model ,View view){
         this.model=model;
         this.view=view;
-        ////////////////////////////Ajout des évenements///////////////////////////
+////////////////////////////////////// Add Events /////////////////////////////////////////////
         view.tp.addSelectionListener(this);
         view.b1.addActionListener(this);
         view.Baddlink.addActionListener(this);
@@ -27,18 +24,14 @@ public class Controller implements  ActionListener,SelectionListener,CommandList
         view.jtp.addCommandListener(this);
         view.mrouteur.addActionListener(this);
         view.tp.setDefaultNodeModel(Ipv4.class);
-
-
-
-
-
     }
 
-
     @Override
-    public void actionPerformed(ActionEvent e) {
-
-        if(e.getSource()==view.b1){view.b1.setToolTipText("<html>"
+    public void actionPerformed(ActionEvent e)
+    {
+        if(e.getSource()==view.b1)
+        {
+            view.b1.setToolTipText("<html>"
                 + "zekrini lydia"
                 +"<br>"
                 + "hamdi bissen"
@@ -46,26 +39,30 @@ public class Controller implements  ActionListener,SelectionListener,CommandList
                 + "akodad oussama"
 
                 + "</html>");
-         }
-       else if (e.getSource() == view.ipv4) {
-            view.tp.setDefaultNodeModel(Ipv4.class);
-
         }
-        else if(e.getSource() == view.ipv6) {
+       else if (e.getSource() == view.ipv4)
+        {
+            view.tp.setDefaultNodeModel(Ipv4.class);
+        }
+        else if(e.getSource() == view.ipv6)
+        {
             view.tp.setDefaultNodeModel(Ipv6.class);
         }
-
-        else if(e.getSource()==view.Baddlink) { x= "add";
+        else if(e.getSource()==view.Baddlink)
+        {
+            x= "add";
         }
-        else if(e.getSource()==view.Bremove) { x= "Remove";
+        else if(e.getSource()==view.Bremove)
+        {
+            x= "Remove";
         }
-        else if (e.getSource()==view.mrouteur) {x= "Modify";
+        else if (e.getSource()==view.mrouteur)
+        {
+            x= "Modify";
         }
-        else if ( e.getSource()==view.Brun){
-
-           // model.color(view.tp);
-            model.prof(view.tp);
-
+        else if ( e.getSource()==view.Brun)
+        {
+            model.testConvertTopo(view.tp);
         }
     }
 
@@ -73,26 +70,28 @@ public class Controller implements  ActionListener,SelectionListener,CommandList
 
 
     @Override
-    public void onSelection(Node node) {
-
-        if (x.equals("add")) { model.counter(view.tp,node);
+    public void onSelection(Node node)
+    {
+        if (x.equals("add"))
+        {
+            model.counter(view.tp,node);
         }
-
-       else if (x.equals("Remove")) { model.countdown(view.tp,node);
+        else if (x.equals("Remove"))
+        {
+            model.countdown(view.tp,node);
         }
-        else if (x.equals("Modify")){model.modify(view.tp,node);}
-
-
+        else if (x.equals("Modify"))
+        {
+            model.modify(view.tp,node);
+        }
     }
 
     @Override
-    public void onCommand(String s) {
-
-        if (s.equals("Clear") ) {
-
-           view.tp.clear();
-
+    public void onCommand(String s)
+    {
+        if (s.equals("Clear"))
+        {
+            view.tp.clear();
         }
-
     }
 }
